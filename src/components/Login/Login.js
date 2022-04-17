@@ -1,27 +1,70 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import auth from '../../firebase.init';
 
 const Login = () => {
+    const emailRef = useRef('');
+    const passwordRef = useRef('');
+    const location = useLocation();
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+      const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+
+      const navigate = useNavigate();
+    let from = location.state?.from?.pathname || "/";
+
+    if (user) {
+        navigate(from, { replace: true });
+    }
+
+      const handleLogin = (event)=>{
+        event.preventDefault();
+        const email = emailRef.current.value;
+        const password = passwordRef.current.value;
+
+        signInWithEmailAndPassword(email, password);
+      }
+      const resetPassword = async (event) =>{
+        const email = emailRef.current.value;
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        }
+        else {
+            toast('please enter your email address');
+        }
+      }
+
     return (
         <div className='register w-50 mx-auto mt-5 '>
             <h2 className='text-center'>Please Login</h2>
-            <form >
+            <form onSubmit={handleLogin}>
                 <div class="form-group fs-5">
-                    <input type="email" name='email' class="form-control p-3 fs-5" placeholder="Enter email" />
+                    <input ref={emailRef} type="email" name='email' class="form-control p-3 fs-5" placeholder="Enter email" />
                     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <br />
                 <div class="form-group fs-5">
-                    <input type="password" name='password' class="form-control p-3 fs-5" placeholder="Password" />
+                    <input ref={passwordRef} type="password" name='password' class="form-control p-3 fs-5" placeholder="Password" />
                 </div>
                 <br />
                 
                 <div className='form-group d-flex justify-content-center'>
                     <button type="submit" class="btn w-100 p-3 fs-5" style={{ backgroundColor: "#c5cdf1" }}>Login</button>
                 </div>
-                <p className='fw-bold text-center mt-2'>Don't have an account? <span><Link to='/register' className='text-decoration-none'>Please Register</Link></span></p>
+                <div className='d-flex justify-content-around align-items-center mt-2'>
+                <p className='fw-bold text-center mt-2'>Don’t have an account? <span><Link to='/register' className='text-decoration-none'>Register now</Link></span></p>
+                <p className='fw-bold text-center mt-2'>Forgot Password? <span><Link to='/login' onClick={resetPassword} className='text-decoration-none'>Reset Password</Link></span></p>
+                </div>
             </form>
-            
+            <ToastContainer/>
         </div>
     );
 };
