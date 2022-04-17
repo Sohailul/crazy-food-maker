@@ -44,7 +44,7 @@ const Login = () => {
 
     return (
         <div className='register w-50 mx-auto mt-5 '>
-            <h2 className='text-center'>Please Login</h2>
+            <h2 className='text-center mb-5'>Please Login</h2>
             <form onSubmit={handleLogin}>
                 <div class="form-group fs-5">
                     <input ref={emailRef} type="email" name='email' class="form-control p-3 fs-5" placeholder="Enter email" />
