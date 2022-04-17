@@ -1,12 +1,39 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Register = () => {
     const [agree, setAgree] = useState(false);
+    const navigate = useNavigate();
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
+      const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
+      if (user) {
+        console.log("user", user);
+    }
+
+      const handleRegister = async (event) =>{
+          event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({displayName: name});
+        alert("verification email sent");
+        navigate('/');
+
+      }
     return (
         <div className='register w-50 mx-auto mt-5 '>
             <h2 className='text-center'>Please Register</h2>
-            <form >
+            <form onSubmit={handleRegister}>
                 <div class="form-group fs-5">
                     <label>Name</label>
                     <input type="text" name='name' class="form-control p-3 fs-5" placeholder="Your name" />
@@ -33,7 +60,6 @@ const Register = () => {
                 </div>
                 <p className='fw-bold text-center mt-2'>Already have an account? <span><Link to='/login' className='text-decoration-none'>Login</Link></span></p>
             </form>
-            
         </div>
     );
 };
