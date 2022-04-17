@@ -46,18 +46,23 @@ const Login = () => {
         <div className='register w-50 mx-auto mt-5 '>
             <h2 className='text-center mb-5'>Please Login</h2>
             <form onSubmit={handleLogin}>
-                <div class="form-group fs-5">
-                    <input ref={emailRef} type="email" name='email' class="form-control p-3 fs-5" placeholder="Enter email" />
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <div className="form-group fs-5">
+                    <input ref={emailRef} type="email" name='email' className="form-control p-3 fs-5" placeholder="Enter email" />
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <br />
-                <div class="form-group fs-5">
-                    <input ref={passwordRef} type="password" name='password' class="form-control p-3 fs-5" placeholder="Password" />
+                <div className="form-group fs-5">
+                    <input ref={passwordRef} type="password" name='password' className="form-control p-3 fs-5" placeholder="Password" />
                 </div>
                 <br />
-                
+                {
+                    error?
+                    <p className='text-danger'>{error.message}</p>
+                    :
+                    <p className='text-success'></p>
+                }
                 <div className='form-group d-flex justify-content-center'>
-                    <button type="submit" class="btn w-100 p-3 fs-5" style={{ backgroundColor: "#c5cdf1" }}>Login</button>
+                    <button type="submit" className="btn w-100 p-3 fs-5" style={{ backgroundColor: "#c5cdf1" }}>Login</button>
                 </div>
                 <div className='d-flex justify-content-around align-items-center mt-2'>
                 <p className='fw-bold text-center mt-2'>Don’t have an account? <span><Link to='/register' className='text-decoration-none'>Register now</Link></span></p>

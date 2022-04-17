@@ -24,25 +24,25 @@ const Checkout = () => {
                 <h2 className='form-title text-center'>Checkout</h2>
                 <form onSubmit={handleCreateUser}>
                     <div className="form-group fs-5">
-                        <label htmlFor="name">Your Name</label>
+                        <label>Your Name</label>
                         <br/>
                         <input  type="text" name="name" className="form-control p-3 fs-5" placeholder="Your Name" required/>
                     </div>
                     <br/>
                     <div className="form-group fs-5">
-                        <label htmlFor="email">Your Email</label>
+                        <label>Your Email</label>
                         <br/>
                         <input readOnly type="email" value={user?.email} name="email" className="form-control p-3 fs-5" placeholder="" required/>
                     </div>
                     <br/>
                     <div className="form-group fs-5">
-                        <label htmlFor="address">Address</label>
+                        <label>Address</label>
                         <br/>
                         <input type="text" name="address" className="form-control p-3 fs-5" placeholder="Address"  required/>
                     </div>
                     <br/>
                     <div className="form-group fs-5">
-                        <label htmlFor="phone">Phone Number</label>
+                        <label>Phone Number</label>
                         <br/>
                         <input type="text" name="phone" className="form-control p-3 fs-5" placeholder="Phone number" required/>
                     </div>

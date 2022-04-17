@@ -30,20 +30,20 @@ const Register = () => {
         <div className='register w-50 mx-auto mt-5 '>
             <h2 className='text-center'>Please Register</h2>
             <form onSubmit={handleRegister}>
-                <div class="form-group fs-5">
+                <div className="form-group fs-5">
                     <label>Name</label>
-                    <input type="text" name='name' class="form-control p-3 fs-5" placeholder="Your name" />
+                    <input type="text" name='name' className="form-control p-3 fs-5" placeholder="Your name" />
                 </div>
                 <br />
-                <div class="form-group fs-5">
+                <div className="form-group fs-5">
                     <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" name='email' class="form-control p-3 fs-5" placeholder="Enter email" />
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <input type="email" name='email' className="form-control p-3 fs-5" placeholder="Enter email" />
+                    <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
                 <br />
-                <div class="form-group fs-5">
+                <div className="form-group fs-5">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" name='password' class="form-control p-3 fs-5" placeholder="Password" />
+                    <input type="password" name='password' className="form-control p-3 fs-5" placeholder="Password" />
                 </div>
                 <br />
                 <div className="form-check">
@@ -52,7 +52,7 @@ const Register = () => {
                 </div>
                 <br />
                 <div className='form-group d-flex justify-content-center'>
-                    <button disabled={!agree} type="submit" class="btn w-100 p-3 fs-5" style={{ backgroundColor: "#c5cdf1" }}>Register</button>
+                    <button disabled={!agree} type="submit" className="btn w-100 p-3 fs-5" style={{ backgroundColor: "#c5cdf1" }}>Register</button>
                 </div>
                 <p className='fw-bold text-center mt-2'>Already have an account? <span><Link to='/login' className='text-decoration-none'>Login</Link></span></p>
             </form>
