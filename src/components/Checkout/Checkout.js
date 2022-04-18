@@ -47,7 +47,7 @@ const Checkout = () => {
                         <input type="text" name="phone" className="form-control p-3 fs-5" placeholder="Phone number" required/>
                     </div>
                     <br/>
-                    <button className='form-submit btn btn-primary w-100 p-2 fs-5 mx-auto d-block' type="submit">Checkout&nbsp;<FaShippingFast/></button>
+                    <button className='form-submit btn w-100 p-2 fs-5 mx-auto d-block' type="submit" style={{backgroundColor: "#f0a453"}}>Checkout&nbsp;<FaShippingFast/></button>
                 </form>
                 <ToastContainer/>
             </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import SocialLogin from '../Login/SocialLogin';
 
 const Register = () => {
     const [agree, setAgree] = useState(false);
@@ -27,7 +28,7 @@ const Register = () => {
 
       }
     return (
-        <div className='register w-50 mx-auto mt-5 '>
+        <div className='register w-50 mx-auto mt-5 mb-5'>
             <h2 className='text-center'>Please Register</h2>
             <form onSubmit={handleRegister}>
                 <div className="form-group fs-5">
@@ -48,14 +49,15 @@ const Register = () => {
                 <br />
                 <div className="form-check">
                     <input onClick={() => setAgree(!agree)} type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className={agree ? 'text-primary' : 'text-danger'} for="exampleCheck1">Accept Terms and Conditions</label>
+                    <label className={agree ? 'text-success' : 'text-danger'} for="exampleCheck1">Accept Terms and Conditions</label>
                 </div>
                 <br />
                 <div className='form-group d-flex justify-content-center'>
-                    <button disabled={!agree} type="submit" className="btn w-100 p-3 fs-5" style={{ backgroundColor: "#c5cdf1" }}>Register</button>
+                    <button disabled={!agree} type="submit" className="btn w-100 p-3 fs-5" style={{ backgroundColor: "#f0a453" }}>Register</button>
                 </div>
                 <p className='fw-bold text-center mt-2'>Already have an account? <span><Link to='/login' className='text-decoration-none'>Login</Link></span></p>
             </form>
+            <SocialLogin></SocialLogin>
         </div>
     );
 };
